@@ -14,6 +14,8 @@ import Settings from "./Settings";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
+import Login from './Login';
+
 const PAGES = {
     
     Home: Home,
@@ -47,6 +49,10 @@ function _getCurrentPage(url) {
 function PagesContent() {
     const location = useLocation();
     const currentPage = _getCurrentPage(location.pathname);
+    if (/\/login$/i.test(location.pathname)) {
+        return <Routes><Route path="/login" element={<Login />} /><Route path="/Login" element={<Login />} /></Routes>;
+    }
+
     
     return (
         <Layout currentPageName={currentPage}>
